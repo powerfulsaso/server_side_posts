@@ -1,21 +1,54 @@
 
+const { post } = require("../app");
+const Post = require("../models/post.model");
 
 module.exports.create = (req, res) => {
-    res.json({ message: "TODO: create post" });
+    Post.create(req.body).then((post) => {
+        res.status(201).json(post);
+    }).catch(() => {
+        res.status(400).json({ message: "Error creating post" });
+    });
 }
 
 module.exports.list = (req, res) => {
-    res.json({ message: "TODO: list posts" });
+    Post.find().then((posts) => {
+        res.json(posts);
+    });
 }
 
 module.exports.detail = (req, res) => {
-    res.json({ message: "TODO: post detail" });
+    Post.findById(req.params.id).then((post) => {
+        if (post) {
+            res.json(post);
+        } else {
+            res.status(404).json({ message: "Post not found" });
+        }
+    });
 }
 
 module.exports.update = (req, res) => {
-    res.json({ message: "TODO: post update" });
+    Post.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true,
+    })
+        .then((post) => {
+            if (post) {
+                res.json(post);
+            } else {
+                res.status(404).json({ message: "Post not found" });
+            }
+        }).catch(() => {
+            res.status(400).json({ message: "Error creating post" });
+        });
 }
 
 module.exports.delete = (req, res) => {
-    res.json({ message: "TODO: post delete" });
+    Post.findByIdAndDelete(req.params.id)
+        .then((post) => {
+            if (post) {
+                res.status(204).json();
+            } else {
+                res.status(404).json({ message: "Post not found" });
+            }
+        });
 }
