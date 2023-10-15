@@ -12,6 +12,7 @@ router.delete("/api/posts/:id", middleware.checkAuth, posts.delete);
 
 router.post("/api/users", users.create);
 router.post("/api/login", users.login);
+router.get("/api/users/activate/:id", users.activate);
 
 
 module.exports = router;
