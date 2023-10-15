@@ -3,6 +3,7 @@ const User = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 
 module.exports.create = (req, res) => {
+
     bcrypt.hash(req.body.password, 10)
         .then((hash) => {
             req.body.password = hash;
@@ -11,6 +12,8 @@ module.exports.create = (req, res) => {
             }).catch(() => {
                 res.status(400).json({ message: "Error creating User" });
             });
+        }).catch((err) => {
+            res.status(400).json({ message: `Password missing` });
         });
 }
 
@@ -23,7 +26,6 @@ module.exports.login = (req, res) => {
             bcrypt.compare(req.body.password, user.password)
                 .then((match) => {
                     if (match) {
-                        //todo return jwt
                         const token = jwt.sign({
                             sub: user._id,
                             exp: Date.now() / 1000 + 3600
