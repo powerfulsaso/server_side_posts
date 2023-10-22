@@ -1,0 +1,379 @@
+{
+	"info": {
+		"_postman_id": "015e8634-3341-4d1d-a86f-be6013679569",
+		"name": "Inesdi - ServerSide",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22996423"
+	},
+	"item": [
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\":\"post-2\",\n    \"text\":\"123456\",\n    \"author\": \"powerfulsaso1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/posts/652c1cee3871efed3b9ad5c6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"posts",
+								"652c1cee3871efed3b9ad5c6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \n    \"text\":\"hello world\"\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/posts/652c1cee3871efed3b9ad5c6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"posts",
+								"652c1cee3871efed3b9ad5c6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\":\"post-1\",\n    \"text\":\"hello world\",\n    \"author\": \"powerfulsaso1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/posts/652c1cee3871efed3b9ad5c6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"posts",
+								"652c1cee3871efed3b9ad5c6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"ipiedra\",\n    \"email\":\"i@test.com\",\n    \"password\": \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"token\",jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"i@test.com\",\n    \"password\": \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/users/activate/652c73132e774f65580acb41",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								"activate",
+								"652c73132e774f65580acb41"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "page_user_badges",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/employees?badges=black",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"employees"
+					],
+					"query": [
+						{
+							"key": "user",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "badges",
+							"value": "black"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Oldest",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/employees/oldest",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"employees",
+						"oldest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Employee by Name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/employees/sue",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"employees",
+						"sue"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Employee",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"name\": \"Isaac\",\n        \"age\": 19,\n        \"phone\": {\n            \"personal\": \"555-123-123\",\n            \"work\": \"555-456-456\",\n            \"ext\": \"2342\"\n        },\n        \"privileges\": \"user\",\n        \"favorites\": {\n            \"artist\": \"Picasso\",\n            \"food\": \"pizza\"\n        },\n        \"finished\": [\n            17,\n            3\n        ],\n        \"badges\": [\n            \"blue\",\n            \"black\"\n        ],\n        \"points\": [\n            {\n                \"points\": 85,\n                \"bonus\": 20\n            },\n            {\n                \"points\": 85,\n                \"bonus\": 10\n            }\n        ]\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/employees",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"employees"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:8000/api",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
